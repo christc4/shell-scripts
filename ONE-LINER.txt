@@ -1,0 +1,27 @@
+REPLACE 'SPACES' in filenames with 'UNDERSCORE'
+
+find . -name '* *' | while IFS= read -r f; do mv "$f" "$(echo "$f" | tr ' ' '_')"; done
+
+Convert UPPERCASE filenames to LOWERCASE
+
+for file in *; do mv "$file" "$(echo "$file" | tr '[:upper:]' '[:lower:]')"; done
+
+Batch file RENAME
+
+find . -type f -name 'index.md' -execdir mv '{}' i.md \;
+
+Get file SIZE
+
+du -sk * | sort -nr | awk '{print $1/1024 " MB\t" $2}'
+
+Fuzzy CD
+
+cd $(find /var/www/werc/sites -type d \( -name .git -prune \) -o \( -type d -print \) | fzf) && clear
+
+SCREEENSHOT to CLIPBOARD
+
+import png:- | xclip -selection c -t image/png
+
+SHUFFLE images
+
+find . -type f | shuf | nsxiv -ai
